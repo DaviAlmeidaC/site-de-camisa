@@ -1,0 +1,398 @@
+@font-face {
+    font-family: 'icones';
+    src: url(../font/icones.ttf);
+}
+
+body{
+    background-color: #1D232A ;
+    font-family: 'Open Sans', 'icones' , sans-serif; /*tipo de fonte*/
+    color: #FFFFFF;
+}
+
+@media screen and (min-width: 1440px) {
+    body{
+        display: grid;
+        grid-template-columns: auto 1fr;
+    }
+}
+
+.cabecalho{
+    display:flex;/*isso cria um bloco a onde fica flexivel as coisas que estao dentro dele, ou abaixo del, ele so é usado quando tem espaço na tela e ele nao serve para alinhar, nao temos essa facilidade nele, como o padding e a margin*/
+    justify-content: space-between;/*ele deixa justo e separado, cria um espaço no meio das coisas, e ele deixa colado como a parade, e ele modifica na horizontal,e ele tem alguns calores que sao aceitos, como o flex-start(padrao)flex-end, center, space-around, space-evenly e space-between.*/
+    align-items: center;/*o aling itens, ele alinha os itens da pagina, tira da parade e deixa no centro, assim como no centro da classe a onde ele esta, em cima e nem em baixo, que no caso, trabalha com a vertical, valores aceito:flex-start, flex-end, center e stretch (valor padrão).*/
+    background-color: #15191C;
+    padding: 0px 16px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.16);/*sombra*/
+}
+
+.cabecalho__menu i::before{/*aqui esta deixando claro que depois da teg (i) ou antes, deve se colocar algo, no botao feito em html*/
+    content: "\e904";/*é o tipo de fonte para se botar a imagem de menu*/
+    font-size: 24px;
+}
+
+.cabecalho__notificacao i::before{
+    content: "\e906";
+    font-size: 24px;
+}
+
+.cabecalho__logo{
+    width: 40px;
+}
+
+.cabecalho__perfil{
+    display: none;
+}
+
+@media screen and (min-width: 1440px){/*tela para pc*/
+    .cabecalho{
+        background-color: #1D232A;
+        display: grid;
+        column-gap: 32px;
+        grid-template-columns: 1fr auto;
+        padding: 16px 60px;
+        height: 80px;
+        box-sizing: border-box;/*para respeitar a borda*/
+        grid-column: 2;
+    }
+
+    .cabecalho__menu{
+        display: none;
+    }
+
+    .cabecalho__logo{
+        display: none;/*para nao existir mais*/
+    }
+
+    .cabecalho__perfil{
+        display: grid;
+        grid-template-columns: repeat(3, auto);/*para repetir nas tres colunas como auto*/
+        column-gap: 8px;/*espaçamento das colunas*/
+        align-items: center;/*alinhar na vertical em centro*/
+        justify-self: flex-end;/*ficar colado na parede*/
+        color: #95999C;
+        padding: 8px 32px;/*espaçamento*/
+        border-right: 1px solid #95999C;/*criar borda*/
+    }
+
+    .cabecalho__perfil::before{
+        content: "";/*tem que existir, msm nao tendo nada*/
+        display:block;/*pq vamos trabalhar com altura e largura*/
+        width: 32px;/*é a largura do elemento dentro de um conteudo*/
+        height: 32px;/*é a altura do conteudo dentro de um elemento*/
+        background-image: url(../img/profile_2.png);/*a imagem do perfil*/
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;/*deixar a imagem centralizada*/
+    }
+
+    .cabecalho__perfil::after{
+        content: "\e90d";
+        color: #FFFFFF;
+        font-size: 1.5rem;
+    }
+}
+
+.menu-lateral{
+    display:flex;
+    flex-direction: column;/*quebra linha e deixa em colunas*/
+    /*flex-wrap: wrap;quebra linha quando o espaço maximo é atigido na tela*/
+    background-color: #15191C;
+    width: 75vw;/*largura de view port (vw)*/
+    height: 100vh;/*(vh)altura do view port(caixa que abre de lado)*/
+
+    position: absolute;
+    left: -100vw;/*para voltar ao inicial, ele volta esse tanto*/
+    transition: .30s;/*animação quando apertar no botao*/
+}
+
+@media screen and (min-width: 1440px){
+    .menu-lateral{
+        position: static;
+            width: 200px;
+            grid-column: 1;
+            grid-row: 1 / span 2;
+    }
+}
+
+.menu-lateral--ativo{/*classe sendo usada no java script*/
+    left: 0;
+    transition: .30s;
+}
+
+.menu-lateral__logo{
+    width: 118px;
+    align-self: center;/*deixa a imagem no meio, e especifica que é so a imagem, atraves do self*/
+    padding: 16px;
+}
+
+.menu-lateral__link{
+    height: 64px;
+    color: #95999C;
+    padding-left: 64px;
+    display:flex;
+    align-items: center;
+}
+
+.menu-lateral__link::before{
+    content:"";
+    width: 24px;
+    height: 24px;
+    font-size: 24px;
+    position: absolute;/*deixou absoleto, agora posso modificar a direção, junto com o seu ponto inicial*/
+    left: 24px;
+}
+
+.menu-lateral__link--ativo{/*quando a opção ou o link estiver selecionado, ele tela mudanças, como na cor e etc*/
+    color: #FFFFFF;
+    padding-left: 50px;
+    border-left: 8px solid #FFFFFF;/*deixa a botar dos links do menu com uma borda branca so na esquerda*/
+}
+
+.menu-lateral__link--inicio::before{/*deixa antes do nome inicio, um icone (vulgo de casa)*/
+    content: "\e902";
+}
+
+.menu-lateral__link--videos::before{
+    content: "\e90e";
+}
+
+.menu-lateral__link--picos::before{
+    content: "\e908";
+}
+
+.menu-lateral__link--integrantes::before{
+    content: "\e903";
+}
+
+.menu-lateral__link--camisas::before{
+    content: "\e900";
+}
+
+.menu-lateral__link--pinturas::before{
+    content: "\e90a";
+}
+
+.principal {
+    padding: 24px 16px;
+    display: grid;/*mexe com colunas*/
+    gap: 16px;/*alinhei as colunas*/
+}
+
+.titulo-pagina {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.titulo-secao{
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+@media screen and (min-width: 1440px){
+    .principal{
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        grid-template-areas: 
+            "titulo-pagina titulo-pagina titulo-pagina"
+            "destaque-video destaque-video videos-recentes"
+            "secao-videos secao-videos secao-videos"
+            "produtos-recentes destaque-produtos destaque-produtos"
+            "secao-produtos secao-produtos secao-produtos"
+        ;
+        column-gap: 32px;
+        padding: 16px 60px;
+        grid-column: 2;
+    }
+
+    .titulo-secao{
+        grid-column: span 4;
+    }
+}
+
+.cartao {
+    width: 100%;
+    border-radius: 15px;/*e o aredondamento das bordas*/
+    overflow: hidden;
+    background-color: #2C343A;
+}
+
+.cartao__imagem--desktop{
+    display: none;
+}
+
+.cartao--destaque{
+    margin-bottom: 16px;
+}
+
+.cartao__conteudo {
+    padding: 16px;
+    display: grid;
+    grid-template-columns: auto 1fr;/*essa é a tag para deixar em colunas o conteudo,e o auto é para deixaar automatico o espaçamento caso seja modificado*/
+    gap: 8px;/*é o espaçamento das colunas*/
+}
+
+.cartao__destaque {
+    grid-column: span 2;
+}
+
+.cartao__titulo {
+    font-size: 1.2rem;
+    font-weight: 700;
+    grid-column: span 2;
+}
+
+.cartao__perfil {
+    color: #95999C;
+    font-size: 0.9rem;
+    grid-column: span 2;
+}
+
+.cartao__info {
+    display: flex;
+    align-items: center;/*alinha na vertical*/
+    color: #95999C;
+}
+
+.cartao__info--tempo::before {
+    content: "\e90c";
+    margin-right: 8px;    
+}
+
+.cartao__info--visualizacao::before {
+    content: "\e90f";
+    margin-right: 8px;    
+}
+
+.cartao__botao {
+    display: flex;
+    justify-content: center;/*alina na horizontal*/
+    align-items: center;
+    background-color: #0480DC;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    justify-self: flex-end;/*serve para modificar e especificar apenas um item,e o flex ende, ele fica totalmende na direita*/
+}
+
+.cartao__botao--play::before {
+    content: "\e90b";
+    font-size: 24px;
+}
+
+.cartao__botao--destaque {
+    width: 100%;
+    grid-column: span 2;/*deixar as colunas com apenas duas linhas*/
+}
+
+.cartao__botao--destaque::before {
+    margin-right: 8px;
+}
+
+.cartao--recentes{
+    display: none;
+}
+
+@media screen and (min-width: 1440px){
+    .cartao--destaque{
+        margin-bottom: 0;
+    }
+
+    .cartao__imagem--mobile{
+        display: none;
+    }
+
+    .cartao__imagem--desktop{
+        display: block;
+    }
+
+    .cartao__botao--destaque{
+        grid-row: auto;
+        padding: 16px 8px;
+    }
+
+    .cartao--recentes{
+        display: grid;
+        grid-template-columns: repeat(2 auto);
+        align-items: center;
+        row-gap: 24px;
+        width: 256px;
+        padding: 16px;
+        box-sizing: border-box;
+        align-self: flex-start;
+    }
+
+    .cartao--recentes .cartao__titulo{
+        grid-column: auto;
+    }
+
+    .cartao__link{
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: #0480DC;
+        justify-self: flex-end;
+    }
+
+    .cartao__lista{
+        display: grid;
+        row-gap: 16px;
+        grid-column: span 2;
+    }
+
+    .cartao__item{
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 8px;
+    }
+
+    .cartao__item-thumb{
+        width: 32px;
+        grid-row:span 2;
+    }
+
+    .cartao__item-titulo{
+        font-size: 0.9rem;
+        line-height: 1.2rem;
+        font-weight: 700;
+    }
+
+    .cartao__item-perfil{
+        font-size: 0.8rem;
+        color: #95999C;
+    }
+}
+
+.secao{
+    display: grid;
+    gap: 16px;
+}
+
+@media screen and (min-width: 1440px) {
+    .secao {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .destaque-video {
+        grid-area: destaque-video;
+    }
+    
+    .videos-recentes {
+        grid-area: videos-recentes;
+    }
+    
+    .secao-videos {
+        grid-area: secao-videos;
+    }
+    
+    .destaque-produtos {
+        grid-area: destaque-produtos;
+    }
+    
+    .produtos-recentes {
+        grid-area: produtos-recentes;
+    }
+    
+    .secao-produtos {
+        grid-area: secao-produtos;
+    }
+}
